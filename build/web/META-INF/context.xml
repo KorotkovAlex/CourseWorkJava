@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/MallKKurs">
+  <Resource name="jdbc/Mall"
+
+    auth="Container"
+    type="javax.sql.DataSource"
+    maxActive="100" 
+    maxIdle="30" 
+    maxWait="10000"
+    username="root" 
+    password="1234"
+    driverClassName="com.mysql.jdbc.Driver"
+    url="jdbc:mysql://localhost:3306/Mall"/>
+
+<Realm className="org.apache.catalina.realm.JDBCRealm" 
+    driverName="com.mysql.jdbc.Driver"
+    name="Mall" 
+    type="javax.sql.DataSource"
+    connectionURL="jdbc:mysql://localhost:3306/Mall" 
+    connectionName="root" 
+    connectionPassword="1234" 
+    userTable="user" 
+    userNameCol="login"
+    userCredCol="password"
+    userRoleTable="role" 
+    roleNameCol="role"
+    auth="Container"
+    maxTotal="100" 
+    maxIdle="30" 
+    maxWaitMillis="10000"/>
+</Context>

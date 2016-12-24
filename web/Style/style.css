@@ -1,0 +1,27 @@
+body {
+    margin:0;
+}
+.header{
+    width:100%;
+    background: #1E88E5;
+}
+
+.subHeader {
+    width: 900px;
+    height: 50px;
+    margin: 0px auto;
+}
+
+.menu {
+    width: 900px;
+    height: 50px;
+    margin: 0px auto;  
+}
+
+.subMenu {
+    width: 225px;
+    text-align:center;  
+    float:left;
+}
+
+

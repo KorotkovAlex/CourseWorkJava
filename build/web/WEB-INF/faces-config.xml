@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>log</from-outcome>
+            <to-view-id>/Log/login.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Admin/admin.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>update</from-outcome>
+            <to-view-id>/Admin/updateProduct.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
