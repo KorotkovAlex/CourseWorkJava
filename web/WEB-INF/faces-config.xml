@@ -13,8 +13,34 @@
     <navigation-rule>
         <from-view-id>/Admin/admin.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>update</from-outcome>
+            <from-outcome>updateProduct</from-outcome>
             <to-view-id>/Admin/updateProduct.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addProduct</from-outcome>
+            <to-view-id>/Admin/addProduct.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>deleteProduct</from-outcome>
+            <to-view-id>/Admin/deleteProduct.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>addUser</from-outcome>
+            <to-view-id>/Admin/addUser.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Admin/addProduct.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/Admin/admin.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Admin/updateProduct.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/Admin/admin.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

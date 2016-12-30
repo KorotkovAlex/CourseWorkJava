@@ -17,13 +17,31 @@ and open the template in the editor.
     <body>
         
         <div>add Product</div>
+        
         <h:form>
-            <p:inputText value="#{product.name}"></p:inputText>
-            <p:inputText value="#{product.price}"></p:inputText>
-            <p:inputText value="#{product.discountPrice}"></p:inputText>
-            <p:inputText value="#{product.depInt}"></p:inputText>
-            <p:inputText value="#{product.department.idDepartment}"></p:inputText>
-            <h:commandButton value="Добавить товар" action="#{product.insertProduct()}" />
+            <div>
+                <h:commandLink action="admin">Список товаров</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="addProduct.xhtml" >Добавить пользователя</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="addUser.xhtml" >Добавить продукт</h:commandLink>
+            </div>
+            <div>             
+                <h:commandLink  action="deleteProduct.xhtml" >Удалить продукт</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="updateProduct" >Изменить продукт</h:commandLink>
+            </div>
+                <p:inputText value="#{product.name}"></p:inputText>
+                <p:inputText value="#{product.price}"></p:inputText>
+                <p:inputText value="#{product.discountPrice}"></p:inputText>
+                <p:inputText value="#{product.depInt}"></p:inputText>
+                <p:inputText value="#{product.department.idDepartment}"></p:inputText>
+            <c:if test="#{product!=null}">
+                <h:commandButton value="Добавить товар" action="#{product.insertProduct()}" />
+            </c:if>
         </h:form>
     </body>
 </html>

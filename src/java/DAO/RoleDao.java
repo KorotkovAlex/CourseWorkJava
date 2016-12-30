@@ -29,9 +29,9 @@ public class RoleDao {
     }
 
     public void insertRole(Role role) throws SQLException, IOException {        
-        pstmt =
-                con.prepareStatement("insert Role(name) values(?)");
-        pstmt.setString(1, role.getRole());        
+        pstmt = con.prepareStatement("insert Role values(?,?)");
+        pstmt.setString(1, role.getLogin());
+        pstmt.setString(2, role.getRole());        
         pstmt.executeUpdate();
     }
    

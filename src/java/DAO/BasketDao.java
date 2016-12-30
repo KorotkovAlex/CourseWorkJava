@@ -50,6 +50,10 @@ public class BasketDao {
             basket.setDate(rs.getDate(2));
             baskets.add(basket);
         }
-        return baskets;        
+        return baskets;
+    }
+    
+    public void addProductInBasket(Product product){
+        
     }
 }

@@ -33,8 +33,9 @@ public class UserDao {
     }
 
     public void insertUser(User user) throws SQLException, IOException {        
-        pstmt = con.prepareStatement("insert User(login,password,idRole) values(?,?,?)");
-        pstmt.setString(1, user.getLogin());        
+        pstmt = con.prepareStatement("insert User(login,password) values(?,?)");
+        pstmt.setString(1, user.getLogin());
+        pstmt.setString(2, user.getPassword());        
         pstmt.executeUpdate();
     }
    

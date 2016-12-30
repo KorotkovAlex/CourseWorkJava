@@ -106,8 +106,8 @@ public class ProductMB {
         } catch (SQLException ex) {
             
         }
-
     }
+    
     public ProductMB() {
     }
     
@@ -157,5 +157,9 @@ public class ProductMB {
      */
     public void setProduct(Product product) {
         this.product = product;
+    }
+    
+    public void deleteProduct(Product product) throws SQLException, IOException{
+        productDao.deleteProduct(product);
     }
 }

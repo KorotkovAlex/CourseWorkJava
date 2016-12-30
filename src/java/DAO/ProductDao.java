@@ -57,8 +57,8 @@ public class ProductDao {
     }    
     
     public void deleteProduct(Product product) throws SQLException, IOException {
-        pstmt = con.prepareStatement("DELETE FROM admin WHERE id = ?;");
-        pstmt.setInt(1, (int) product.getIdProduct());
+        pstmt = con.prepareStatement("DELETE FROM product WHERE id = ?;");
+        pstmt.setInt(1, (int)product.getIdProduct());
         pstmt.executeUpdate();
     }
 

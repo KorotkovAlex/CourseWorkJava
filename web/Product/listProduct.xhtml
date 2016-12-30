@@ -22,11 +22,8 @@ and open the template in the editor.
                 <div> ${item.name}</div>
                 <div> ${item.price}</div>
                 <div> ${item.discountPrice}</div>
-                <div>
-
-                </div>
             </div>
-            //добавить кнопку добавить в корзину
+            <h:commandButton action="" actionListener="#{basket.addPrduct(item)}" value="В корзину" />
         </c:forEach>
     </body>
 </html>

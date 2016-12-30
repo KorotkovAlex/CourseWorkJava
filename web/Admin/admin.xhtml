@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
@@ -15,9 +10,10 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="/Style/style.css" rel="stylesheet" />
     </h:head>
-    <h:body>
-        <h:outputText value="#{userMB.user.login}"></h:outputText>      
+    <h:body>             
         <h:form>
+            <h:commandLink  action="#{request.logout()}">Выйти</h:commandLink> 
+            <h:outputText value="#{userMB.user.login}"></h:outputText> 
             <div>
                 <h:commandLink  action="addProduct.xhtml" >Добавить пользователя</h:commandLink>
             </div>
@@ -39,7 +35,8 @@ and open the template in the editor.
                     <div> ${item.department.name}</div>
                 </div>
             //добавить кнопку изменить,         
-            <h:commandButton value="Посмотреть " action="update" actionListener="#{product.setProduct(item)}"></h:commandButton>
+            <h:commandButton value="Изменить" action="update" actionListener="#{product.setProduct(item)}"></h:commandButton>
+            <h:commandButton value="Удалить" action="" actionListener="#{product.delteProduct(item)}"></h:commandButton>
             </c:forEach>            
         </h:form>
     </h:body>

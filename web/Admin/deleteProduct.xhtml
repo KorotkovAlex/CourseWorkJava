@@ -5,12 +5,34 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
         <div>Delete Product</div>
+        <h:form>
+            <div>
+                <h:commandLink action="admin">Список товаров</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="addProduct.xhtml" >Добавить пользователя</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="addUser.xhtml" >Добавить продукт</h:commandLink>
+            </div>
+            <div>             
+                <h:commandLink  action="deleteProduct.xhtml" >Удалить продукт</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="updateProduct.xhtml" >Изменить продукт</h:commandLink>
+            </div>      
+        </h:form>
+        
     </body>
 </html>

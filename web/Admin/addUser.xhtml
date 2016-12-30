@@ -16,12 +16,30 @@ and open the template in the editor.
     </head>
     <body>
         <h:form>
-            <p:inputText value="#{product.name}"></p:inputText>
-            <p:inputText value="#{product.price}"></p:inputText>
-            <p:inputText value="#{product.discountPrice}"></p:inputText>
-            <p:inputText value="#{product.depInt}"></p:inputText>
-            <p:inputText value="#{product.department.idDepartment}"></p:inputText>
-            <h:commandButton value="Добавить товар" action="#{product.insertProduct()}" />
+            <div>
+                <h:commandLink action="admin">Список товаров</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="addProduct.xhtml" >Добавить пользователя</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="addUser.xhtml" >Добавить продукт</h:commandLink>
+            </div>
+            <div>             
+                <h:commandLink  action="deleteProduct.xhtml" >Удалить продукт</h:commandLink>
+            </div>
+            <div>
+                <h:commandLink  action="updateProduct.xhtml" >Изменить продукт</h:commandLink>
+            </div>      
+            Login
+            <p:inputText value="#{userMB.login}"></p:inputText>
+            RoleName
+            <p:inputText value="#{userMB.roleName}"></p:inputText>
+            Password
+            <p:inputText value="#{userMB.password}"></p:inputText>
+            <c:if test="${userMB!=null}">
+                <h:commandButton value="Добавить товар" action="${userMB.insertUser()}" />
+            </c:if>
         </h:form>
     </body>
 </html>

@@ -34,10 +34,7 @@ import javax.sql.DataSource;
 @ManagedBean(name="basket")
 @SessionScoped
 public class BasketMB {
-
-    /**
-     * Creates a new instance of BasketMB
-     */
+    
     private PreparedStatement pstmt;
     InitialContext ctx;
     DataSource ds;
@@ -57,12 +54,14 @@ public class BasketMB {
         } catch (SQLException ex) {
             
         }
-
     }
     public BasketMB() {
     }
     
     public ArrayList<Basket> getAllProductsFromBasket() throws SQLException, IOException, NamingException{ 
         return basketDao.getAllProductsFromBasket();       
+    }
+    public void addProductInBasket(Product product){
+        basketDao.addProductInBasket(product);
     }
 }

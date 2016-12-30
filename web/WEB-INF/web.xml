@@ -10,10 +10,6 @@
     </filter>
     <filter-mapping>
         <filter-name>NewFilter</filter-name>
-        <servlet-name>servlet</servlet-name>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>NewFilter</filter-name>
         <url-pattern>*.xhtml</url-pattern>
     </filter-mapping>
     <servlet>
