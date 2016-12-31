@@ -56,4 +56,7 @@ public class BasketDao {
     public void addProductInBasket(Product product){
         
     }
+    public void removePrductFromBasket(Basket basket){
+        //Удалить из бд продукт по login пользователя 
+    }
 }

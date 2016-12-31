@@ -3,13 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/NetBeansProjects/MallKKurs/src/java/DAO/ProductDao.java</file>
+            <file>file:/F:/NetBeansProjects/MallKKurs/src/java/ManagedBeans/BasketMB.java</file>
+            <file>file:/F:/NetBeansProjects/MallKKurs/src/java/Models/Map.java</file>
+            <file>file:/F:/NetBeansProjects/MallKKurs/web/Product/lisrProductInBasket.xhtml</file>
             <file>file:/F:/NetBeansProjects/MallKKurs/web/index.xhtml</file>
             <file>file:/F:/NetBeansProjects/MallKKurs/web/Admin/addProduct.xhtml</file>
-            <file>file:/F:/NetBeansProjects/MallKKurs/src/java/ManagedBeans/ProductMB.java</file>
+            <file>file:/F:/NetBeansProjects/MallKKurs/web/Customer/listOrderings.xhtml</file>
+            <file>file:/F:/NetBeansProjects/MallKKurs/web/Product/viewProducts.xhtml</file>
             <file>file:/F:/NetBeansProjects/MallKKurs/web/products.xhtml</file>
             <file>file:/F:/NetBeansProjects/MallKKurs/web/Admin/addUser.xhtml</file>
             <file>file:/F:/NetBeansProjects/MallKKurs/web/Admin/admin.xhtml</file>
+            <file>file:/F:/NetBeansProjects/MallKKurs/src/java/DAO/BasketDao.java</file>
+            <file>file:/F:/NetBeansProjects/MallKKurs/web/Product/listProduct.xhtml</file>
         </group>
     </open-files>
 </project-private>

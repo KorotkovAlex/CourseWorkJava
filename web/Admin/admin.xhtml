@@ -15,7 +15,7 @@
             <h:commandLink  action="#{request.logout()}">Выйти</h:commandLink> 
             <h:outputText value="#{userMB.user.login}"></h:outputText> 
             <div>
-                <h:commandLink  action="addProduct.xhtml" >Добавить пользователя</h:commandLink>
+                <h:commandLink  action="addProduct.xhtml" >Пользователи</h:commandLink>
             </div>
             <div>
                 <h:commandLink  action="addUser.xhtml" >Добавить продукт</h:commandLink>
@@ -33,8 +33,7 @@
                     <div> ${item.price}</div>
                     <div> ${item.discountPrice}</div>
                     <div> ${item.department.name}</div>
-                </div>
-            //добавить кнопку изменить,         
+                </div>        
             <h:commandButton value="Изменить" action="update" actionListener="#{product.setProduct(item)}"></h:commandButton>
             <h:commandButton value="Удалить" action="" actionListener="#{product.delteProduct(item)}"></h:commandButton>
             </c:forEach>            

@@ -41,7 +41,7 @@ public class UserDao {
    
     public ArrayList<User> getAllUsers() throws SQLException, IOException {        
         users = new ArrayList<User>();       
-        String query = "select * from admin";
+        String query = "select * from user, role where user.login = role.login";
         pstmt = con.prepareStatement(query);
         rs = pstmt.executeQuery();
         while (rs.next()) {
@@ -64,9 +64,9 @@ public class UserDao {
         }
         return user;
     }
-    public void updateUser(User user, String name) throws SQLException, IOException  {
+    public void updateUser(User user) throws SQLException, IOException  {
         pstmt = con.prepareStatement("UPDATE admin set name = ? WHERE id = ?;");
-        pstmt.setString(1, name);
+        pstmt.setString(1, user.getLogin());
         pstmt.executeUpdate();
     }
 

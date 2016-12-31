@@ -11,17 +11,16 @@ package Models;
  */
 public class Role {
     
-    private String login;
+    private User user;
     private String role;
-
-    public String getLogin() {
-        return login;
+    
+    public User getUser(){
+        return this.user;
     }
     
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUser(User user){
+        this.user =user;
     }
-    
     public String getRole() {
         return role;
     }

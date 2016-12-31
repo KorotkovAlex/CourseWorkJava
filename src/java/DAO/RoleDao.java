@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import Models.Role;
+import Models.User;
 
 /**
  *
@@ -30,35 +31,38 @@ public class RoleDao {
 
     public void insertRole(Role role) throws SQLException, IOException {        
         pstmt = con.prepareStatement("insert Role values(?,?)");
-        pstmt.setString(1, role.getLogin());
+        pstmt.setString(1, role.getUser().getLogin());
         pstmt.setString(2, role.getRole());        
         pstmt.executeUpdate();
     }
    
     public ArrayList<Role> getAllRoles() throws SQLException, IOException {        
         roles = new ArrayList<Role>();       
-        String query = "select * from role";
+        String query = "select role.login, role.role, user.password from role, user where user.login = role.login";
         pstmt = con.prepareStatement(query);
         rs = pstmt.executeQuery();
         while (rs.next()) {
             Role role = new Role();
             role.setRole(rs.getString(1));
-            role.setLogin(rs.getString(2));
+            User user = new User();
+            user.setLogin(rs.getString(2));
+            user.setPassword(rs.getString(3));
+            role.setUser(user);
             roles.add(role);
         }
         return roles;        
     }
     
-    public void updateRole(Role role, String password) throws SQLException, IOException  {
-        pstmt = con.prepareStatement("UPDATE role set name = ? WHERE login = ?;");
-        pstmt.setString(1, password);
-        pstmt.setString(2, role.getLogin());
+    public void updateRole(Role role) throws SQLException, IOException  {
+        pstmt = con.prepareStatement("UPDATE role set role = ? WHERE login = ?;");
+        pstmt.setString(1, role.getRole());
+        pstmt.setString(2, role.getUser().getLogin());
         pstmt.executeUpdate();
     }
 
     public void deleteRole(Role role) throws SQLException, IOException {
         pstmt = con.prepareStatement("DELETE FROM role WHERE login = ?;");
-        pstmt.setString(1, role.getLogin());
+        pstmt.setString(1, role.getUser().getLogin());
         pstmt.executeUpdate();
     }    
 }

@@ -50,9 +50,7 @@ public class BasketMB {
             con = ds.getConnection();
             basketDao = new BasketDao(con);             
         } catch (NamingException ex) {
-           
         } catch (SQLException ex) {
-            
         }
     }
     public BasketMB() {
@@ -61,7 +59,12 @@ public class BasketMB {
     public ArrayList<Basket> getAllProductsFromBasket() throws SQLException, IOException, NamingException{ 
         return basketDao.getAllProductsFromBasket();       
     }
+    
     public void addProductInBasket(Product product){
         basketDao.addProductInBasket(product);
+    }
+    
+    public void removePrductFromBasket(Basket basket){
+        basketDao.removePrductFromBasket(basket);
     }
 }

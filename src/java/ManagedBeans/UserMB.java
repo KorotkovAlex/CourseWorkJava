@@ -13,6 +13,8 @@ import Models.User;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -36,6 +38,7 @@ public class UserMB {
     private InitialContext ctx;
     private DataSource ds;
     private Connection con;
+    private Role role;
     UserDao userDao;
     RoleDao roleDao;
     public String getRoleName() {
@@ -67,6 +70,10 @@ public class UserMB {
     public void init() {
        userDao = new UserDao(connection());
     }
+    public ArrayList<Role> getAllUsers() throws SQLException, IOException{
+        // Получаю список пользователь из класса роль потомучто так связанно бд 
+        return roleDao.getAllRoles();
+    }
     public Connection connection(){
         try {
             ctx = new InitialContext();
@@ -86,15 +93,36 @@ public class UserMB {
         return user;
     }
     
+    public void setUserForUpdate(Role role){
+        this.role = role;
+    }
+    
+    public Role getUserForUpdate(){
+        return this.role;
+    }
+    
+    public void updateUser() throws SQLException, IOException {
+        User user = new User();
+        user.setLogin(login);
+        user.setPassword(password);
+        userDao.updateUser(user);
+        con.close();
+        Role role = new Role();
+        role.setUser(user);
+        role.setRole(roleName);           
+        roleDao = new RoleDao(connection());
+        roleDao.updateRole(role);
+        con.close();        
+    }
     public void insertUser() throws SQLException, IOException {        
         User user = new User();
         user.setLogin(login);
         user.setPassword(password);
-        Role role = new Role();
-        role.setLogin(login);
-        role.setRole(roleName);    
         userDao.insertUser(user);
         con.close();
+        Role role = new Role();
+        role.setUser(user);
+        role.setRole(roleName);           
         roleDao = new RoleDao(connection());
         roleDao.insertRole(role);
         con.close();        

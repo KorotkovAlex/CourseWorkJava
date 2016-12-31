@@ -31,10 +31,10 @@
                     <h:commandLink  action="Product/listProduct.xhtml"> Список </h:commandLink>
                 </div>
                 <div class="subMenu">
-                    <h:commandLink  action="Product/listProduct.xhtml" rendered="#{request.isUserInRole('customer')}"> Прошлые покупки </h:commandLink>
+                    <h:commandLink  action="Product/listProductInBasket.xhtml" rendered="#{request.isUserInRole('customer')}"> Прошлые покупки </h:commandLink>
                 </div>
             </div>
-            <h:commandLink  action="#{request.logout()}" >Выйти</h:commandLink>         
+            <h:commandLink  action="#{request.logout()}"> Выйти </h:commandLink>         
         </h:form>        
     </h:body>
 </html>

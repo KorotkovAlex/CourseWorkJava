@@ -43,4 +43,18 @@
             <to-view-id>/Admin/admin.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Admin/listUsers.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>updateUser</from-outcome>
+            <to-view-id>/Admin/updateUser.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Admin/updateUser.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listUsers</from-outcome>
+            <to-view-id>/Admin/listUsers.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

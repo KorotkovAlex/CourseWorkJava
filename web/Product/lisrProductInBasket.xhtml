@@ -15,15 +15,15 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <body>                  
-        <c:forEach items="${product.getAllProduct()}" var="item">
+    <body>
+        <c:forEach items="${basket.getAllProductsFromBasket()}" var="item">
             <div>
                 <div> ${item.idProduct}</div>
                 <div> ${item.name}</div>
                 <div> ${item.price}</div>
                 <div> ${item.discountPrice}</div>
             </div>
-            <h:commandButton action="" actionListener="#{basket.addPrductInBasket(item)}" value="В корзину" />
+            <h:commandButton action="" actionListener="#{basket.removePrductFromBasket(item)}" value="Убрать из корзиныт" />
         </c:forEach>
     </body>
 </html>
