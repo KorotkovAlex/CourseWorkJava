@@ -43,9 +43,9 @@ public class RoleDao {
         rs = pstmt.executeQuery();
         while (rs.next()) {
             Role role = new Role();
-            role.setRole(rs.getString(1));
+            role.setRole(rs.getString(2));
             User user = new User();
-            user.setLogin(rs.getString(2));
+            user.setLogin(rs.getString(1));
             user.setPassword(rs.getString(3));
             role.setUser(user);
             roles.add(role);
@@ -60,7 +60,7 @@ public class RoleDao {
         pstmt.executeUpdate();
     }
 
-    public void deleteRole(Role role) throws SQLException, IOException {
+    public void removeRole(Role role) throws SQLException, IOException {
         pstmt = con.prepareStatement("DELETE FROM role WHERE login = ?;");
         pstmt.setString(1, role.getUser().getLogin());
         pstmt.executeUpdate();

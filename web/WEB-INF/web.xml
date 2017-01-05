@@ -89,11 +89,11 @@
         </auth-constraint>
     </security-constraint>
     <security-constraint>
-        <display-name>third</display-name>
+        <display-name>log</display-name>
         <web-resource-collection>
             <web-resource-name>All</web-resource-name>
             <description/>
-            <url-pattern>/newjsp.jsp</url-pattern>
+            <url-pattern>/Log/login.xhtml</url-pattern>
             <http-method>GET</http-method>
             <http-method>HEAD</http-method>
             <http-method>POST</http-method>

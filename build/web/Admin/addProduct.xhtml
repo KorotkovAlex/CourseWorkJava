@@ -15,33 +15,23 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        
         <div>add Product</div>
-        
         <h:form>
             <div>
                 <h:commandLink action="admin">Список товаров</h:commandLink>
             </div>
             <div>
-                <h:commandLink  action="addProduct.xhtml" >Добавить пользователя</h:commandLink>
+                <h:commandLink  action="addProduct.xhtml" >Добавить продукт</h:commandLink>
             </div>
             <div>
-                <h:commandLink  action="addUser.xhtml" >Добавить продукт</h:commandLink>
+                <h:commandLink  action="addUser.xhtml" >Добавить пользователя</h:commandLink>
             </div>
-            <div>             
-                <h:commandLink  action="deleteProduct.xhtml" >Удалить продукт</h:commandLink>
-            </div>
-            <div>
-                <h:commandLink  action="updateProduct" >Изменить продукт</h:commandLink>
-            </div>
-                <p:inputText value="#{product.name}"></p:inputText>
-                <p:inputText value="#{product.price}"></p:inputText>
-                <p:inputText value="#{product.discountPrice}"></p:inputText>
-                <p:inputText value="#{product.depInt}"></p:inputText>
-                <p:inputText value="#{product.department.idDepartment}"></p:inputText>
-            <c:if test="#{product!=null}">
-                <h:commandButton value="Добавить товар" action="#{product.insertProduct()}" />
-            </c:if>
+            <!--<p:inputText value="{product.product.idProduct}"></p:inputText>-->
+            <p:inputText value="#{product.product.name}"></p:inputText>
+            <p:inputText value="#{product.product.price}"></p:inputText>
+            <p:inputText value="#{product.product.discountPrice}"></p:inputText>
+            <p:inputText value="#{product.product.department.idDepartment}"></p:inputText>
+            <h:commandButton value="Добавить товар" action="#{product.insertProduct()}"/>
         </h:form>
     </body>
 </html>

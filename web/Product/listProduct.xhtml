@@ -13,17 +13,35 @@ and open the template in the editor.
     xmlns:p="http://primefaces.org/ui">
     <head>
         <title>TODO supply a title</title>
+        <link href="../Style/style.css" rel="stylesheet" type="text/css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <body>                  
-        <c:forEach items="${product.getAllProduct()}" var="item">
-            <div>
-                <div> ${item.idProduct}</div>
-                <div> ${item.name}</div>
-                <div> ${item.price}</div>
-                <div> ${item.discountPrice}</div>
-            </div>
-            <h:commandButton action="" actionListener="#{basket.addPrductInBasket(item)}" value="В корзину" />
-        </c:forEach>
-    </body>
+        <body>  
+            <h:form>
+                <ui:include src="../WEB-INF/Header.xhtml"/>
+                <div class="menu">
+
+                        <div class="subMenu">
+                            <a href="../Log/login.xhtml">История заказов</a>
+                        </div>
+                        <div class="subMenu">
+                            <a href="listProduct.xhtml">Список продуктов</a>
+                        </div>
+                    <div class="subMenu">
+                        <a href="../index.xhtml">Вернуться</a>
+                    </div>
+                </div>
+                <c:forEach items="${product.getAllProducts()}" var="item">
+                    
+                    <div>
+                        <div> ${item.idProduct}</div>
+                        <div> ${item.name}</div>
+                        <div> ${item.price}</div>
+                        <div> ${item.discountPrice}</div>
+                    </div>
+                    <h:commandButton action="listProduct.xhtml" actionListener="#{basket.addProductInBasket(item, userMB.user.login)}" value="В корзину" />
+                    <h:commandButton action="viewProduct.xhtml" actionListener="#{product.setProduct(item)}" value="Просмотр" />
+                </c:forEach>
+            </h:form>
+        </body>
 </html>

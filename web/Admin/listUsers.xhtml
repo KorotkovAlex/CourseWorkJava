@@ -15,18 +15,19 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>
-            <h:commandLink  action="addProduct.xhtml" >Добавить пользователя</h:commandLink>
-            //Как исправить косяк? как вывести список пользователь из класса User
-            <c:forEach items="${userMB.allUsers}"  var="item">
-                <div>
-                    <div> ${item.user.login}</div>
-                    <div> ${item.user.password}</div>
-                    <div> ${item.role}</div>
-                </div>        
-            <h:commandButton value="Изменить" action="update" actionListener="#{userMB.updateUser(item)}"></h:commandButton>
-            <h:commandButton value="Удалить" action="" actionListener="#{userMB.removeUser(item)}"></h:commandButton>
-            </c:forEach>
-        </div>
+        <h:form>
+            <div>
+                //Как исправить косяк? как вывести список пользователь из класса User
+                <c:forEach items="${userMB.allUsers}"  var="item">
+                    <div>
+                        <div> ${item.user.login}</div>
+                        <div> ${item.user.password}</div>
+                        <div> ${item.role}</div>                        
+                    </div>        
+                <!--<h:commandButton value="Изменить" action="updateUser" actionListener="{userMB.setRole(item)}"></h:commandButton>-->
+                <h:commandButton value="Удалить" action="#{userMB.removeUser(item)}" ></h:commandButton>
+                </c:forEach>
+            </div>
+        </h:form>
     </body>
 </html>

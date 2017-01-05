@@ -13,17 +13,44 @@ and open the template in the editor.
     xmlns:p="http://primefaces.org/ui">
     <head>
         <title>TODO supply a title</title>
+        <link href="../Style/style.css" rel="stylesheet" type="text/css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <c:forEach items="${basket.getAllProductsFromBasket()}" var="item">
-            <div>
-                <div> ${item.idProduct}</div>
-                <div> ${item.name}</div>
-                <div> ${item.price}</div>
-                <div> ${item.discountPrice}</div>
-            </div>
-            <h:commandButton action="" actionListener="#{basket.removePrductFromBasket(item)}" value="Убрать из корзиныт" />
-        </c:forEach>
+        <h:form>
+            <ui:include src="../WEB-INF/Header.xhtml"/>
+                <div class="menu">
+                        <div class="subMenu">
+                            <a href="../Log/login.xhtml">История заказов</a>
+                        </div>
+                        <div class="subMenu">
+                            <a href="listProduct.xhtml">Список продуктов</a>
+                        </div>
+                    <div class="subMenu">
+                        <a href="../index.xhtml">Вернуться</a>
+                    </div>
+                </div>
+            <c:forEach items="${basket.getListOfLists(userMB.user.login)}" var="item">         
+                <div>
+                    <c:forEach var='ar' items='${item.value}' >
+                        <c:if test="${ar.loginCus == userMB.user.login}">
+                            ${ar.product.name}
+                            ${ar.loginCus}
+                            ${ar.date}
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </c:forEach>
+            <c:forEach items="${basket.getAllProductsFromBasket()}" var="item">
+                <c:if test="#{item.loginCus == userMB.user.login}">
+                    <div>
+                        <div> ${item.product.idProduct}</div>
+                        <div> ${item.product.name}</div>
+                        <div> ${item.product.price}</div>
+                        <h:commandButton action="#{basket.removePrductFromBasket(item)}" value="Убрать из корзины" />
+                    </div>
+                </c:if>                
+            </c:forEach>
+        </h:form>
     </body>
 </html>

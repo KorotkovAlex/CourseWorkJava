@@ -15,17 +15,11 @@
             <h:commandLink  action="#{request.logout()}">Выйти</h:commandLink> 
             <h:outputText value="#{userMB.user.login}"></h:outputText> 
             <div>
-                <h:commandLink  action="addProduct.xhtml" >Пользователи</h:commandLink>
+                <h:commandLink  action="listUsers.xhtml" >Пользователи</h:commandLink>
             </div>
             <div>
-                <h:commandLink  action="addUser.xhtml" >Добавить продукт</h:commandLink>
-            </div>
-            <div>             
-                <h:commandLink  action="deleteProduct.xhtml" >Удалить продукт</h:commandLink>
-            </div>
-            <div>
-                <h:commandLink  action="updateProduct" >Изменить продукт</h:commandLink>
-            </div>            
+                <h:commandLink  action="addProduct.xhtml" >Добавить продукт</h:commandLink>
+            </div>    
             <c:forEach items="${product.getAllProduct()}"  var="item">
                 <div>
                     <div> ${item.idProduct}</div>
@@ -34,8 +28,8 @@
                     <div> ${item.discountPrice}</div>
                     <div> ${item.department.name}</div>
                 </div>        
-            <h:commandButton value="Изменить" action="update" actionListener="#{product.setProduct(item)}"></h:commandButton>
-            <h:commandButton value="Удалить" action="" actionListener="#{product.delteProduct(item)}"></h:commandButton>
+            <h:commandButton value="Изменить" action="updateProduct" actionListener="#{product.setProduct(item)}"></h:commandButton>
+            <h:commandButton value="Удалить" action="#{product.deleteProduct(item)}" ></h:commandButton>
             </c:forEach>            
         </h:form>
     </h:body>

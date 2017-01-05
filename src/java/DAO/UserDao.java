@@ -64,14 +64,30 @@ public class UserDao {
         }
         return user;
     }
-    public void updateUser(User user) throws SQLException, IOException  {
-        pstmt = con.prepareStatement("UPDATE admin set name = ? WHERE id = ?;");
+    public void updateUser(User user, String name) throws SQLException, IOException  {
+        pstmt = con.prepareStatement("UPDATE basket set login = ? WHERE login = ?;");
         pstmt.setString(1, user.getLogin());
+        pstmt.setString(2, name);
+        pstmt.executeUpdate();
+        pstmt = con.prepareStatement("UPDATE role set login = ? WHERE login = ?;");
+        pstmt.setString(1, user.getLogin());
+        pstmt.setString(2, name);
+        pstmt.executeUpdate();
+        pstmt = con.prepareStatement("UPDATE user set login = ? WHERE login = ?;");
+        pstmt.setString(1, user.getLogin());
+        pstmt.setString(2, name);
         pstmt.executeUpdate();
     }
 
-    public void deleteUser(User user) throws SQLException, IOException {
-        pstmt = con.prepareStatement("DELETE FROM admin WHERE id = ?;");
+    public void deleteUserInBasketInRole(User user) throws SQLException, IOException {
+        pstmt = con.prepareStatement("DELETE FROM basket WHERE login = ?;");
+        pstmt.setString(1, user.getLogin());
+        pstmt.executeUpdate();
+        pstmt = con.prepareStatement("DELETE FROM role WHERE login = ?;");
+        pstmt.setString(1, user.getLogin());
+        pstmt.executeUpdate();
+        pstmt = con.prepareStatement("DELETE FROM user WHERE login = ?;");
+        pstmt.setString(1, user.getLogin());
         pstmt.executeUpdate();
     }    
 }

@@ -17,10 +17,10 @@ and open the template in the editor.
     <body>
         <div>updateUser</div>
         <h:form>
-            <h:inputText value="#{userMB.login}"></h:outputText>
-            <h:inputText value="#{userMB.password}"></h:outputText>
-            <h:inputText value="#{userMB.role}"></h:outputText>
-            <h:commandButton value="Изменить" action="listUsers" actionListener="#{userMB.updateUser()}"
+            <h:inputText value="#{userMB.role.user.login}" />
+            <h:inputText value="#{userMB.role.user.password}"/>
+            <h:inputText value="#{userMB.role.role}"/>
+            <h:commandButton value="Изменить" action="listUsers" actionListener="#{userMB.updateUser(userMB.login)}" />
         </h:form>
     </body>
 </html>

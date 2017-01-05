@@ -14,26 +14,31 @@
     <h:body>
         <ui:include src="WEB-INF/Header.xhtml"/>       
         <h:form>
-            <c:if test="#{request.remoteUser == null}">
-                <h:commandLink  action="Log/login.jsp" > Войти </h:commandLink>
-            </c:if>
+            <a href="Log/login.xhtml">Личный кабинет</a>
             <h:commandLink  action="Product/listProduct.xhtml" rendered="#{request.isUserInRole('admin')}"> 
                 admin 
             </h:commandLink>
             <div class="menu">
                 <div class="subMenu">
-                    <h:commandLink  action="Product/listProduct.xhtml"> Продукты </h:commandLink>
-                </div>
-                <div class="subMenu">             
-                    <h:commandLink  action="index.xhtml"> Акции </h:commandLink>
+                    <a href="Product/listProduct.xhtml"></a>
                 </div>
                 <div class="subMenu">
-                    <h:commandLink  action="Product/listProduct.xhtml"> Список </h:commandLink>
-                </div>
-                <div class="subMenu">
-                    <h:commandLink  action="Product/listProductInBasket.xhtml" rendered="#{request.isUserInRole('customer')}"> Прошлые покупки </h:commandLink>
+                    <a href="Product/lisrProductInBasket.xhtml"></a>
                 </div>
             </div>
+            <h:form> 
+                <c:forEach items="${product.getAllProducts()}" var="item">
+                    
+                    <div>
+                        <div> ${item.idProduct}</div>
+                        <div> ${item.name}</div>
+                        <div> ${item.price}</div>
+                        <div> ${item.discountPrice}</div>
+                    </div>
+                    <h:commandButton action="index.xhtml" actionListener="#{basket.addProductInBasket(item, userMB.user.login)}" value="В корзину" />
+                    <h:commandButton action="Product/viewProducts.xhtml" actionListener="#{product.setProduct(item)}" value="Просмотр" />
+                </c:forEach>
+            </h:form>
             <h:commandLink  action="#{request.logout()}"> Выйти </h:commandLink>         
         </h:form>        
     </h:body>

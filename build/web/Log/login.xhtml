@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>TODO supply a title</title>
+        <link href="../Style/style.css" rel="stylesheet" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            <ui:include src="../WEB-INF/Header.xhtml"/>
+            <div class="menu">
+                <c:if test="#{request.isUserInRole('admin')}">
+                    <div class="subMenu">
+                        <a href="../Admin/addProduct.xhtml">Добавить продукт</a>
+                    </div>
+                    <div class="subMenu">
+                        <a href="../Admin/addUser.xhtml">Добавить пользователя</a>
+                    </div>
+                    <!--<a href="../Admin/admin.xhtml"></a>-->
+                    <div class="subMenu">
+                        <a href="../Admin/listUsers.xhtml">Список пользователей</a>
+                    </div>
+                </c:if>
+                <!--<a href="../Customer/listOrderings.xhtml">Список заказов</a>-->
+                <c:if test="#{request.isUserInRole('customer')}">
+                    <div class="subMenu">
+                        <a href="login.xhtml">История заказов</a>
+                    </div>
+                    <div class="subMenu">
+                        <a href="../Product/listProduct.xhtml">Список продуктов</a>
+                    </div>
+                </c:if>
+                <div class="subMenu">
+                    <a href="../index.xhtml">Вернуться</a>
+                </div>
+            </div>
+            <c:forEach items="${basket.getListOfLists(userMB.user.login)}" var="item">         
+                <div class="listProductsInBasket">
+                    <div class="subListProductsInBasket">
+                        <div>Список ваших покупок на  ${item.key}</div>
+                        <c:forEach var='ar' items='${item.value}' >
+                            <c:if test="${ar.loginCus == userMB.user.login}">
+                                <div>
+                                    ${ar.product.name}
+                                    ${ar.product.price}
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                        <div><h:commandLink>Отсортировать</h:commandLink></div>
+                        <div><h:commandLink>Изменить список</h:commandLink></div>
+                    </div>
+                </div>
+            </c:forEach>
+<!--            <c:forEach items="{basket.getAllProductsFromBasket()}" var="item">
+                <c:if test="{item.loginCus == userMB.user.login}">
+                    <div>
+                        <div> {item.product.idProduct}</div>
+                        <div> {item.product.name}</div>
+                        <div> {item.product.price}</div>
+                        <h:commandButton action="{basket.removePrductFromBasket(item)}" value="Убрать из корзины" />
+                    </div>
+                </c:if>                
+            </c:forEach>-->
+        </h:form>
+    </body>
+</html>

@@ -32,47 +32,28 @@ import javax.sql.DataSource;
 @SessionScoped
 public class UserMB {
 
-    private String login;
-    private String password;
-    private String roleName;
+    
     private InitialContext ctx;
     private DataSource ds;
     private Connection con;
     private Role role;
     UserDao userDao;
     RoleDao roleDao;
-    public String getRoleName() {
-        return roleName;
-    }
-    
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+ 
     public UserMB() {
     }
     @PostConstruct
     public void init() {
        userDao = new UserDao(connection());
+       roleDao = new RoleDao(connection());
+       role = new Role();
+       role.setUser(new User());
     }
     public ArrayList<Role> getAllUsers() throws SQLException, IOException{
         // Получаю список пользователь из класса роль потомучто так связанно бд 
+
         return roleDao.getAllRoles();
+        
     }
     public Connection connection(){
         try {
@@ -93,38 +74,38 @@ public class UserMB {
         return user;
     }
     
-    public void setUserForUpdate(Role role){
+
+    
+    public void userForUpdate(Role role) {
         this.role = role;
     }
     
-    public Role getUserForUpdate(){
-        return this.role;
+    public void updateUser(String oldLogin) throws SQLException, IOException {
+        userDao.updateUser(getRole().getUser(), oldLogin);  
     }
-    
-    public void updateUser() throws SQLException, IOException {
-        User user = new User();
-        user.setLogin(login);
-        user.setPassword(password);
-        userDao.updateUser(user);
-        con.close();
-        Role role = new Role();
-        role.setUser(user);
-        role.setRole(roleName);           
-        roleDao = new RoleDao(connection());
-        roleDao.updateRole(role);
-        con.close();        
-    }
-    public void insertUser() throws SQLException, IOException {        
-        User user = new User();
-        user.setLogin(login);
-        user.setPassword(password);
-        userDao.insertUser(user);
-        con.close();
-        Role role = new Role();
-        role.setUser(user);
-        role.setRole(roleName);           
+    public void insertUser() throws SQLException, IOException {  
+        userDao.insertUser(role.getUser());
+        con.close();     
         roleDao = new RoleDao(connection());
         roleDao.insertRole(role);
         con.close();        
+    }
+    
+    public void removeUser(Role role) throws SQLException, IOException {
+        userDao.deleteUserInBasketInRole(role.getUser());
+    }
+
+    /**
+     * @return the role
+     */
+    public Role getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

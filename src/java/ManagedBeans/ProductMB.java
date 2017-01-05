@@ -32,61 +32,10 @@ import javax.sql.DataSource;
 @ManagedBean(name="product")
 @SessionScoped
 public class ProductMB {
-    private long idProduct;
-    private String name;
-    private BigDecimal price;
-    private BigDecimal discountPrice;
-    private Department department;
-    private int depInt;
-    public long getIdProduct() {
-        return idProduct;
-    }
 
-    public void setIdProduct(long idProduct) {
-        this.idProduct = idProduct;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public BigDecimal getDiscountPrice() {
-        return discountPrice;
-    }
-
-    public void setDiscountPrice(BigDecimal discountPrice) {
-        this.discountPrice = discountPrice;
-    }
-    
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-    public int getdepInt() {
-        return depInt;
-    }
-
-    public void setdepInt(int depInt) {
-        this.depInt = depInt;
-    }
-    
     private ArrayList<Product> products;
     private PreparedStatement pstmt;
+    private String search;
     InitialContext ctx;
     DataSource ds;
     Connection con;
@@ -100,6 +49,8 @@ public class ProductMB {
             ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Mall");
             con = ds.getConnection();
+            product = new Product();
+            product.setDepartment(new Department());
             productDao = new ProductDao(con);
         } catch (NamingException ex) {
            
@@ -113,21 +64,15 @@ public class ProductMB {
     
     
     
-    public ArrayList<Product> getAllProduct() throws SQLException, IOException, NamingException{   
+    public ArrayList<Product> getAllProducts() throws SQLException, IOException, NamingException{   
         return productDao.getAllProducts();            
     }
-    public void updateProduct(Product product, String name) throws SQLException, IOException  {
-    
-    }
+
+    public void updateProduct() throws SQLException, IOException  {
+        productDao.updateProduct(product);
+    }   
     
     public void insertProduct() throws SQLException, IOException {        
-        Product product = new Product();
-        product.setName(name);
-        product.setPrice(price);
-        product.setDiscountPrice(discountPrice);
-        department = new Department();
-        department.setIdDepartment(depInt);
-        product.setDepartment(department);
         productDao.insertProduct(product);
     }
 
@@ -161,5 +106,19 @@ public class ProductMB {
     
     public void deleteProduct(Product product) throws SQLException, IOException{
         productDao.deleteProduct(product);
+    }
+
+    /**
+     * @return the search
+     */
+    public String getSearch() {
+        return search;
+    }
+
+    /**
+     * @param search the search to set
+     */
+    public void setSearch(String search) {
+        this.search = search;
     }
 }

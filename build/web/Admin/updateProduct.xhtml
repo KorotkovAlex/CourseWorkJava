@@ -16,7 +16,13 @@ and open the template in the editor.
     </head>
     <body>
         <h:form>
-            <h:outputText value="#{product.product.name}"></h:outputText>
+            <h:inputText value="#{product.product.idProduct}" />
+            <h:inputText value="#{product.product.name}" />
+            <h:inputText value="#{product.product.price}"/>
+            <h:inputText value="#{product.product.discountPrice}"/>
+            <h:inputText value="#{product.product.department.idDepartment}" />
+            <h:inputText value="#{product.product.department.name}" />
+            <h:commandButton value="Изменить" action="admin" actionListener="#{product.updateProduct()}"/>
         </h:form>
     </body>
 </html>

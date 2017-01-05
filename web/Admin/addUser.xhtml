@@ -32,11 +32,11 @@ and open the template in the editor.
                 <h:commandLink  action="updateProduct.xhtml" >Изменить продукт</h:commandLink>
             </div>      
             Login
-            <p:inputText value="#{userMB.login}"></p:inputText>
+            <p:inputText value="#{userMB.role.user.login}"></p:inputText>
             RoleName
-            <p:inputText value="#{userMB.roleName}"></p:inputText>
+            <p:inputText value="#{userMB.role.role}"></p:inputText>
             Password
-            <p:inputText value="#{userMB.password}"></p:inputText>
+            <p:inputText value="#{userMB.role.user.password}"></p:inputText>
             <c:if test="${userMB!=null}">
                 <h:commandButton value="Добавить товар" action="${userMB.insertUser()}" />
             </c:if>

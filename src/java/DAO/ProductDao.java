@@ -57,7 +57,7 @@ public class ProductDao {
     }    
     
     public void deleteProduct(Product product) throws SQLException, IOException {
-        pstmt = con.prepareStatement("DELETE FROM product WHERE id = ?;");
+        pstmt = con.prepareStatement("DELETE FROM product WHERE idProduct = ?;");
         pstmt.setInt(1, (int)product.getIdProduct());
         pstmt.executeUpdate();
     }
@@ -72,10 +72,14 @@ public class ProductDao {
         pstmt.executeUpdate();
     }
     
-    public void updateProduct(Product product, String name) throws SQLException, IOException  {
-        pstmt = con.prepareStatement("UPDATE admin set name = ? WHERE id = ?;");
-        pstmt.setString(1, name);
-        pstmt.setInt(2, (int) product.getIdProduct());
+    public void updateProduct(Product product) throws SQLException, IOException  {
+        pstmt = con.prepareStatement("UPDATE product set name = ? , price = ? , idDepartment = ? , discountPrice = ? WHERE idProduct = ?;");
+        pstmt.setString(1, product.getName());
+        pstmt.setBigDecimal(2, product.getPrice());
+        pstmt.setLong(3, product.getDepartment().getIdDepartment());
+        pstmt.setBigDecimal(4, product.getDiscountPrice());
+        pstmt.setLong(5, product.getIdProduct());
         pstmt.executeUpdate();
+        //update product set name
     }        
 }

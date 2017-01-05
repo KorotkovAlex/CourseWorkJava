@@ -55,7 +55,20 @@ public class NewFilter implements Filter {
     
     public NewFilter() {
     }        
-    
+    @Override
+    public void init(FilterConfig filterConfig) {        
+        this.filterConfig = filterConfig;
+        try {
+            ctx = new InitialContext();
+            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Mall");
+            con = ds.getConnection();
+            userDao = new UserDao(con);
+        } catch (NamingException ex) {
+            Logger.getLogger(NewFilter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewFilter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
@@ -81,18 +94,5 @@ public class NewFilter implements Filter {
     public void destroy() {      
         this.filterConfig = null;    
     }
-    @Override
-    public void init(FilterConfig filterConfig) {        
-        this.filterConfig = filterConfig;
-        try {
-            ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Mall");
-            con = ds.getConnection();
-            userDao = new UserDao(con);
-        } catch (NamingException ex) {
-            Logger.getLogger(NewFilter.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(NewFilter.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }        
+           
 }

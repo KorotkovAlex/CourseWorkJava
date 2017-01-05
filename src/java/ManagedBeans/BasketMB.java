@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -26,6 +28,7 @@ import javax.faces.bean.SessionScoped;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 /**
  *
@@ -57,14 +60,35 @@ public class BasketMB {
     }
     
     public ArrayList<Basket> getAllProductsFromBasket() throws SQLException, IOException, NamingException{ 
-        return basketDao.getAllProductsFromBasket();       
+    return basketDao.getAllProductsFromBasket();       
     }
     
-    public void addProductInBasket(Product product){
-        basketDao.addProductInBasket(product);
+    public HashMap<Date, ArrayList<Basket>> getListOfLists(String login) throws SQLException, IOException{
+        ArrayList<Basket> baskets1 = new ArrayList<>();
+        ArrayList<Basket> baskets2 = new ArrayList<>();
+        Date date;
+        baskets1 = basketDao.getAllProductsFromBasket();
+        HashMap map = new HashMap<Date,ArrayList<Basket>>();
+        for(Basket basket1 : baskets1){
+            basket1.getDate();
+            if (map.get(basket1.getDate())== null && basket1.getLoginCus().equals(login)) {
+                date = basket1.getDate();
+                for(Basket basket2 : baskets1){
+                    if (basket2.getDate().equals(date)) {
+                        baskets2.add(basket2);
+                    }
+                }
+                map.put(basket1.getDate(), baskets2);
+                baskets2 = new ArrayList<>();
+            }
+        }
+        return map;
+    } 
+    public void addProductInBasket(Product product, String login) throws SQLException{
+        basketDao.addProductInBasket(product, login);
     }
     
-    public void removePrductFromBasket(Basket basket){
+    public void removePrductFromBasket(Basket basket) throws SQLException{
         basketDao.removePrductFromBasket(basket);
     }
 }

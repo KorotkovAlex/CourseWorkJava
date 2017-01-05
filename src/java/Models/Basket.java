@@ -13,6 +13,7 @@ import java.util.List;
  * @author Саня
  */
 public class Basket {
+    private int id;
     private Product product;
     private Date date;
     private String loginCus;
@@ -62,6 +63,20 @@ public class Basket {
      */
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

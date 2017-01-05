@@ -13,7 +13,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,10 +33,9 @@ public class BasketDao {
     }
     
     public ArrayList<Basket> getAllProductsFromBasket() throws SQLException, IOException {   
-        ProductDao productDao = new ProductDao(con);
         baskets= new ArrayList<Basket>();
-        String query = "select b.idProduct, b.dateP, b.login, p.name, p.price, "
-                + "p.discountPrice from Basket as b, product as p "
+        String query = "select  b.idProduct, b.dateP, b.login, p.name, p.price, "
+                + "p.discountPrice, b.id from Basket as b, product as p "
                 + "where b.idProduct = p.idProduct ";
         pstmt = con.prepareStatement(query);
         rs = pstmt.executeQuery();
@@ -45,18 +46,27 @@ public class BasketDao {
             product.setName(rs.getString(4));
             product.setPrice(rs.getBigDecimal(5));
             product.setDiscountPrice(rs.getBigDecimal(6));
-            basket.setProduct(product);
+            basket.setProduct(product);           
             basket.setLoginCus(rs.getString(3));
             basket.setDate(rs.getDate(2));
+            basket.setId(rs.getInt(7));
             baskets.add(basket);
         }
         return baskets;
     }
     
-    public void addProductInBasket(Product product){
+    public void addProductInBasket(Product product, String login) throws SQLException{
+        pstmt = con.prepareStatement("insert into basket (idProduct,dateP,login) values (?,?,?)");
+        pstmt.setLong(1, product.getIdProduct());
+        pstmt.setDate(2, new java.sql.Date((new java.util.Date()).getTime()));
+        pstmt.setString(3,login);
+        pstmt.executeUpdate();
         
     }
-    public void removePrductFromBasket(Basket basket){
+    public void removePrductFromBasket(Basket basket) throws SQLException{
+        pstmt = con.prepareStatement("DELETE FROM basket WHERE id = ? ;");
+        pstmt.setLong(1, basket.getId());
+        pstmt.executeUpdate();
         //Удалить из бд продукт по login пользователя 
     }
 }
